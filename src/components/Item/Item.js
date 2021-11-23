@@ -16,7 +16,7 @@ const Item = ({item}) => {
     const getFetch = new Promise((resolve, reject)=>{
         setTimeout(()=>{
             resolve(item)
-        }, 3000)
+        }, 1000)
         
     });
     

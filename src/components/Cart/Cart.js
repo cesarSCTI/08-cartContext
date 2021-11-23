@@ -5,19 +5,11 @@ import { cartContext } from '../context/cartContext';
 
 
 const Cart = () => {
-    const {cartList, clear} = useContext(cartContext)
+    const {cartList, clear, itemCounter, removeItem} = useContext(cartContext)
     const [cartQty, setcartQty] = useState(0)
     
-    console.log(cartList)
-    
-    const conteo = () =>{
-        cartList.map((prod) => {
-            setcartQty(cartQty + prod.cantidad);
-        })
-    }
-
     useEffect(() => {
-        conteo()
+        setcartQty(itemCounter)
     })
 
     return (
@@ -30,7 +22,7 @@ const Cart = () => {
 
                 {cartQty}
 
-                {cartList.map(prod => <li key={prod.id}>{prod.title}      cantidad: {prod.cantidad}</li>)}
+                {cartList.map(prod => <li key={prod.id}>{prod.id}  |  {prod.title} cantidad: {prod.cantidad} <button onClick={() => removeItem(prod.id)}>x</button></li>)}
 
                 <button className="btn addOn" onClick={clear}>Limpiar carrito</button>
 

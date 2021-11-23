@@ -7,18 +7,36 @@ const CartContextProvider = ({children}) => {
     const [cartList, setcartList] = useState([])
 
     const addCart = (item) =>{
-        setcartList([...cartList, item])
+        if(isInCart(item)){
+            cartList.find((ele) => {
+                ele.cantidad = ele.cantidad + item.cantidad
+            })
+            console.log("el articulo existe")
+        }
+        else{
+            setcartList([...cartList, item])
+        }
     }
     const clear = () =>{
         setcartList([])
     }
-
+    const itemCounter = () =>{
+        return cartList.reduce((accum, item) => accum = accum + item.cantidad, 0)
+    }
+    const isInCart = (item) =>{
+        return cartList.some((cartItem) => cartItem.id === item.id)
+    }
+    const removeItem = (id) =>{
+        setcartList(cartList.filter(prod => prod.id !== id))
+    }
 
     return (
         <cartContext.Provider value={{
             cartList,
             addCart,
-            clear
+            clear,
+            itemCounter,
+            removeItem
         }}>
             {children}
         </cartContext.Provider>

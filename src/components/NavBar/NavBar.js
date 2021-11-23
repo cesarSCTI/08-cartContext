@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav } from "react-bootstrap";
 import logo from '../../../src/logo-guzmar-sport.png'
 import CartWidget from "../CartWidget/CartWidget";
 import './navbar.css';
 import { Link } from "react-router-dom";
+import { cartContext } from "../context/cartContext";
 
 
 
 const NavBar = () =>{
+    const {itemCount} = useContext(cartContext)
     return(
         <Navbar  expand="lg" style={{padding: '10px',backgroundColor:'#ececec', boxShadow:'0px 0px 10px #cecece'}}>
             <Navbar.Brand >
@@ -30,6 +32,7 @@ const NavBar = () =>{
                     <Link to="/cart" className='margenleft'>
                         <CartWidget />
                     </Link>
+                    {itemCount}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
