@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Navbar from 'react-bootstrap/Navbar'
 import { Nav } from "react-bootstrap";
 import logo from '../../../src/logo-guzmar-sport.png'
@@ -10,7 +10,12 @@ import { cartContext } from "../context/cartContext";
 
 
 const NavBar = () =>{
-    const {itemCount} = useContext(cartContext)
+    const {itemCounter} = useContext(cartContext)
+    const [cant, setcant] = useState(0)
+
+    useEffect(() => {
+        setcant(itemCounter)
+    })
     return(
         <Navbar  expand="lg" style={{padding: '10px',backgroundColor:'#ececec', boxShadow:'0px 0px 10px #cecece'}}>
             <Navbar.Brand >
@@ -30,9 +35,10 @@ const NavBar = () =>{
                     <Link to="/category/otoño" className="menu-item">Otoño</Link>
                     <Link to="/category/invierno" className="menu-item">Invierno</Link>
                     <Link to="/cart" className='margenleft'>
-                        <CartWidget />
+                        <CartWidget /> <div className="qty">{cant}</div>
                     </Link>
-                    {itemCount}
+                    
+                    
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
