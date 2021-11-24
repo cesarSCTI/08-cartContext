@@ -24,6 +24,7 @@ const items = [
 const ItemListContainer = ({getting}) =>{
     const{categoryID} = useParams();
     const [catego, setcatego] = useState([]);
+    
 
     useEffect(() => {
         if(categoryID){
@@ -41,10 +42,6 @@ const ItemListContainer = ({getting}) =>{
             <Row>
                 <Col>
                     <h3>{getting}</h3>
-                    
-                </Col>
-                <Col>
-                    <ItemCount stock={10} initial={1}/>
                 </Col>
             </Row>
             

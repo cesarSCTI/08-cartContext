@@ -15,10 +15,10 @@ function App() {
           <NavBar />
           <Switch>
             <Route exact path='/'>
-              <ItemListContainer getting=' hola, vengo desde el archivo app'/>
+              <ItemListContainer getting=' Todos los productos'/>
             </Route>
             <Route exact path='/category/:categoryID'>
-              <ItemListContainer getting=' hola, soy categoria'/>
+              <ItemListContainer/>
             </Route>
             <Route exact path='/item/:id' component={ItemDetailContainer} />
             <Route exact path='/cart' component={Cart} />
